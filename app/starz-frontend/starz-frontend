@@ -1,0 +1,66 @@
+starz-frontend/
+├── app/
+│   ├── (auth)/
+│   │   └── login/
+│   │       └── page.tsx
+│   ├── (dashboard)/
+│   │   ├── admin/
+│   │   │   └── page.tsx
+│   │   ├── rep/
+│   │   │   └── page.tsx
+│   │   ├── contractor/
+│   │   │   └── page.tsx
+│   │   └── layout.tsx
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── layout/
+│   │   ├── Sidebar.tsx
+│   │   ├── Topbar.tsx
+│   │   └── DashboardShell.tsx
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── badge.tsx
+│   │   └── table.tsx
+│   └── charts/
+│       └── StatCard.tsx
+│
+├── lib/
+│   ├── auth.ts
+│   ├── roles.ts
+│   ├── mock-data.ts
+│   └── utils.ts
+│
+├── styles/
+│   └── globals.css
+│
+├── public/
+│   └── logo.svg
+│
+├── .env.local
+├── next.config.js
+└── package.json
+primary: "#0ea5e9"
+background: "#0b1220"
+card: "#0f172a"
+accent: "#22c55e"
+// lib/roles.ts
+export const roles = {
+  admin: ["dashboard", "users", "billing", "analytics"],
+  rep: ["leads", "calls", "commissions"],
+  contractor: ["jobs", "payouts"],
+  partner: ["referrals", "earnings"],
+}
+// app/(dashboard)/layout.tsx
+export default function DashboardLayout({ children }) {
+  const role = "admin" // mock for now
+
+  return (
+    <div className="flex">
+      <Sidebar role={role} />
+      <main className="flex-1 p-6">{children}</main>
+    </div>
+  )
+}
